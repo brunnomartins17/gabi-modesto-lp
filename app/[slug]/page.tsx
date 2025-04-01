@@ -233,6 +233,7 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
 
                 <form
                   onSubmit={handleSubmit}
+                  id="cadastro"
                   className={`max-w-md ${isMobile ? "bg-white p-4 rounded-lg shadow-sm mx-auto" : ""}`}
                 >
                   <div className="mb-1 relative">
@@ -256,6 +257,7 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
                     <input
                       type="text"
                       name="name"
+                      id="form-field-name"
                       placeholder="Primeiro Nome:"
                       required
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#38C02C] mb-1 pl-12 text-base"
@@ -285,6 +287,7 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
                     <input
                       type="email"
                       name="email"
+                      id="form-field-email"
                       placeholder="Digite seu melhor e-mail :)"
                       required
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#38C02C] mb-1 pl-12 text-base"
@@ -300,6 +303,7 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
                     <input
                       type="tel"
                       name="whatsapp"
+                      id="form-field-telefone"
                       placeholder="Digite seu WhatsApp com DDD"
                       required
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#38C02C] mb-1 pl-24 text-base"
