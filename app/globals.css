@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-red: #e74c3c;
+  --primary-blue: #244c6c;
+  --accent-green: #5cb85c;
+  --background-light: #e9ecef;
+  --text-dark: #333333;
+}
+
+body {
+  font-family: "Fredoka", sans-serif;
+  color: var(--text-dark);
+  background-color: #d1dadf;
+}
+
