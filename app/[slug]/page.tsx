@@ -267,7 +267,7 @@ export default function LandingPage({ params }: { params: any }) {
 
                 <form
                   onSubmit={handleSubmit}
-                  id="cadastro"
+                  id="LCI_ABR25"
                   className={`max-w-md ${isMobile ? "bg-white p-4 rounded-lg shadow-sm mx-auto" : ""}`}
                 >
                   <div className="mb-1 relative">
