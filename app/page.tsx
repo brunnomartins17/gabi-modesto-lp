@@ -8,7 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     // Redirecionar para uma slug padrão quando o componente for montado
-    router.push("/lci-abr25-cap01")
+    router.push("/fa-v1-traf")
   }, [router])
 
   // Renderizar um estado de carregamento enquanto o redirecionamento acontece
