@@ -1,7 +1,6 @@
 "use client"
 
-import type React from "react"
-import { useState, type FormEvent, useEffect } from "react"
+import React, { useState, type FormEvent, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Image from "next/image"
 import Logo from "@/components/logo"
@@ -30,7 +29,11 @@ const countries = [
   { code: "CA", name: "Canadá", flag: "🇨🇦", ddi: "+1" },
 ]
 
-export default function LandingPage({ params }: { params: { slug: string } }) {
+export default function LandingPage({ params }: { params: any }) {
+  // Usar React.use para desempacotar o objeto params
+  const unwrappedParams = React.use(params) as { slug: string };
+  const slug = unwrappedParams.slug;
+  
   const router = useRouter()
   const searchParams = useSearchParams()
   const [isMobile, setIsMobile] = useState(false)
@@ -59,12 +62,43 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    
+    if (name === "whatsapp") {
+      // Remove todos os caracteres não numéricos
+      const numericValue = value.replace(/\D/g, "");
+      
+      // Aplica a formatação de acordo com a quantidade de dígitos
+      let formattedValue = numericValue;
+      if (selectedCountry.code === "BR") {
+        // Formato brasileiro: (XX) XXXXX-XXXX
+        if (numericValue.length <= 2) {
+          formattedValue = numericValue;
+        } else if (numericValue.length <= 7) {
+          formattedValue = `(${numericValue.slice(0, 2)}) ${numericValue.slice(2)}`;
+        } else {
+          formattedValue = `(${numericValue.slice(0, 2)}) ${numericValue.slice(2, 7)}-${numericValue.slice(7, 11)}`;
+        }
+      } else {
+        // Formato genérico para outros países
+        if (numericValue.length > 3 && numericValue.length <= 7) {
+          formattedValue = `${numericValue.slice(0, 3)}-${numericValue.slice(3)}`;
+        } else if (numericValue.length > 7) {
+          formattedValue = `${numericValue.slice(0, 3)}-${numericValue.slice(3, 7)}-${numericValue.slice(7)}`;
+        }
+      }
+      
+      setFormData(prev => ({ ...prev, [name]: formattedValue }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+
+    // Extrai apenas os números para enviar ao servidor
+    const whatsappNumericOnly = formData.whatsapp.replace(/\D/g, "");
 
     // Coletar parâmetros UTM da URL
     const utmParams: Record<string, string> = {}
@@ -89,12 +123,12 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
       // Dados básicos do lead
       name: formData.name,
       email: formData.email,
-      phone: `${selectedCountry.ddi}${formData.whatsapp}`,
+      phone: `${selectedCountry.ddi}${whatsappNumericOnly}`,
       countryCode: selectedCountry.code,
       countryDDI: selectedCountry.ddi,
 
       // Informações da origem
-      source: params.slug,
+      source: slug,
       launch: CURRENT_LAUNCH,
       companyId: COMPANY_ID,
 
@@ -129,7 +163,7 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
     const queryParams = new URLSearchParams({
       name: formData.name,
       email: formData.email,
-      phone: `${selectedCountry.ddi}${formData.whatsapp}`,
+      phone: `${selectedCountry.ddi}${whatsappNumericOnly}`,
       country: selectedCountry.code,
     })
 
@@ -139,7 +173,7 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
     }
 
     // Redirecionar para a página de quiz com os parâmetros
-    router.push(`/quiz/${params.slug}?${queryParams.toString()}`)
+    router.push(`/quiz/${slug}?${queryParams.toString()}`)
   }
 
   if (showSplash) {

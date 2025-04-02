@@ -1,7 +1,6 @@
 "use client"
 
-import type React from "react"
-import { useState, type FormEvent } from "react"
+import React, { useState, type FormEvent } from "react"
 import { useRouter } from "next/navigation"
 import Logo from "@/components/logo"
 import Footer from "@/components/footer"
@@ -22,7 +21,11 @@ const countries = [
   { code: "CA", name: "Canadá", flag: "🇨🇦", ddi: "+1" },
 ]
 
-export default function LandingPage({ params }: { params: { slug: string } }) {
+export default function LandingPage({ params }: { params: any }) {
+  // Unwrap params using React.use()
+  const unwrappedParams = React.use(params) as { slug: string };
+  const slug = unwrappedParams.slug;
+  
   const router = useRouter()
   const isMobile = useIsMobile()
   const [selectedCountry, setSelectedCountry] = useState(countries[0]) // Brasil como padrão
@@ -48,12 +51,12 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
         countryCode: selectedCountry.code,
         countryDDI: selectedCountry.ddi,
         phone: `${selectedCountry.ddi}${formData.whatsapp}`,
-        source: params.slug,
+        source: slug,
       }),
     )
 
     // Redirect to quiz page with the same slug parameter
-    router.push(`/quiz/${params.slug}`)
+    router.push(`/quiz/${slug}`)
   }
 
   // Determina qual background usar com base no tamanho da tela

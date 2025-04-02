@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Logo from "@/components/logo"
 import Footer from "@/components/footer"
@@ -20,6 +20,7 @@ const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/Imhz5YlWLjgBBgMI4ml1dP"
 const quizQuestions = [
   {
     id: 1,
+    label: 'pergunta01',
     question: "Qual é a sua faixa etária?",
     options: [
       {
@@ -43,6 +44,7 @@ const quizQuestions = [
   },
   {
     id: 2,
+    label: 'pergunta02',
     question: "Qual o seu nível de escolaridade?",
     options: [
       {
@@ -86,6 +88,7 @@ const quizQuestions = [
   },
   {
     id: 3,
+    label: 'pergunta03',
     question: "Você trabalha como?",
     options: [
       {
@@ -125,6 +128,7 @@ const quizQuestions = [
   },
   {
     id: 4,
+    label: 'pergunta04',
     question: "Qual seu sexo?",
     options: [
       {
@@ -140,6 +144,7 @@ const quizQuestions = [
   },
   {
     id: 5,
+    label: 'pergunta05',
     question: "Você tem filhos?",
     options: [
       {
@@ -163,6 +168,7 @@ const quizQuestions = [
   },
   {
     id: 6,
+    label: 'pergunta06',
     question: "Renda mensal",
     options: [
       {
@@ -190,6 +196,7 @@ const quizQuestions = [
   },
   {
     id: 7,
+    label: 'pergunta07',
     question: "Quem é você no inglês?",
     options: [
       {
@@ -213,6 +220,7 @@ const quizQuestions = [
   },
   {
     id: 8,
+    label: 'pergunta08',
     question: "O que você mais quer no inglês?",
     options: [
       {
@@ -232,6 +240,7 @@ const quizQuestions = [
   },
   {
     id: 9,
+    label: 'pergunta09',
     question: "O que mais te faz querer aprender o inglês?",
     options: [
       {
@@ -259,6 +268,7 @@ const quizQuestions = [
   },
   {
     id: 10,
+    label: 'pergunta10',
     question: "Experiências com o inglês",
     options: [
       {
@@ -286,6 +296,7 @@ const quizQuestions = [
   },
   {
     id: 11,
+    label: 'pergunta11',
     question: "Há quanto tempo você me conhece e me segue",
     options: [
       {
@@ -321,6 +332,7 @@ const quizQuestions = [
   },
   {
     id: 12,
+    label: 'pergunta12',
     question: "Por onde você me conheceu?",
     options: [
       {
@@ -356,6 +368,7 @@ const quizQuestions = [
   },
   {
     id: 13,
+    label: 'pergunta13',
     question: "Você já participou de um evento meu antes?",
     options: [
       {
@@ -395,12 +408,16 @@ interface LeadData {
   [key: string]: string // Para parâmetros UTM e outros campos dinâmicos
 }
 
-export default function QuizPage({ params }: { params: { slug: string } }) {
+export default function QuizPage({ params }: { params: any }) {
+  // Unwrap params using React.use()
+  const unwrappedParams = React.use(params) as { slug: string };
+  const slug = unwrappedParams.slug;
+  
   const router = useRouter()
   const searchParams = useSearchParams()
   const [isMobile, setIsMobile] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState<Record<number, QuizOption>>({})
+  const [answers, setAnswers] = useState<Record<string, QuizOption>>({})
   const [selectedOption, setSelectedOption] = useState<QuizOption | null>(null)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [isCompleted, setIsCompleted] = useState(false)
@@ -408,7 +425,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
   const [leadScore, setLeadScore] = useState({
     totalScore: 0,
     faixa: "",
-    answers: {} as Record<number, string>,
+    answers: {} as Record<string, string>,
     path: "",
     host: "",
     urlParams: {} as Record<string, string>,
@@ -454,7 +471,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
         email,
         phone,
         countryCode: country || "BR",
-        source: params.slug,
+        source: slug,
         launch: CURRENT_LAUNCH,
         companyId: COMPANY_ID,
         ...urlParams, // Adicionar todos os parâmetros da URL
@@ -466,7 +483,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
       const storedLeadData = localStorage.getItem("leadData")
       if (!storedLeadData) {
         // Se não temos dados nem na URL nem no localStorage, redirecionar para a página inicial
-        router.push(`/${params.slug}`)
+        router.push(`/${slug}`)
       } else {
         // Se temos dados no localStorage, adicionar os parâmetros UTM se não existirem
         const leadDataObj = JSON.parse(storedLeadData)
@@ -510,7 +527,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
     }
 
     setIsInitialized(true)
-  }, [isInitialized, params.slug, router, searchParams])
+  }, [isInitialized, slug, router, searchParams])
 
   // Efeito para resetar a opção selecionada quando mudar de questão
   useEffect(() => {
@@ -521,7 +538,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
     setSelectedOption(option)
   }
 
-  const calculateTotalScore = (allAnswers: Record<number, QuizOption>) => {
+  const calculateTotalScore = (allAnswers: Record<string, QuizOption>) => {
     let totalScore = 0
 
     // Somar os pesos de todas as respostas
@@ -546,7 +563,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
   }
 
   // Modificar a função prepareLeadData para redirecionar após o envio bem-sucedido
-  const prepareLeadData = async (allAnswers: Record<number, QuizOption>) => {
+  const prepareLeadData = async (allAnswers: Record<string, QuizOption>) => {
     // Calcular o score total com as respostas atualizadas
     const totalScore = calculateTotalScore(allAnswers)
 
@@ -554,9 +571,14 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
     const faixa = determineLeadFaixa(totalScore)
 
     // Preparar as respostas em formato texto
-    const textAnswers: Record<number, string> = {}
-    Object.entries(allAnswers).forEach(([questionId, answer]) => {
-      textAnswers[Number(questionId)] = answer.text
+    const textAnswers: Record<string, string> = {}
+    console.log(allAnswers);
+    
+    // Como agora já estamos usando o label como chave no allAnswers,
+    // podemos simplesmente mapear os valores diretamente:
+    Object.entries(allAnswers).forEach(([label, answer]) => {
+      // O label já é a chave, então podemos usar diretamente
+      textAnswers[label] = answer.text;
     })
 
     // Extrair todos os parâmetros UTM da URL
@@ -583,7 +605,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
       name,
       email,
       phone,
-      source: params.slug,
+      source: slug,
 
       // Adicionar o lançamento atual e companyId
       launch: CURRENT_LAUNCH,
@@ -654,7 +676,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
       // Criar uma cópia atualizada das respostas incluindo a resposta atual
       const updatedAnswers = {
         ...answers,
-        [quizQuestions[currentQuestion].id]: selectedOption,
+        [quizQuestions[currentQuestion].label]: selectedOption,
       }
 
       // Atualizar o estado das respostas
@@ -796,7 +818,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
                     <input
                       type="radio"
                       id={`option-${index}`}
-                      name={`question-${question.id}`}
+                      name={`question-${question.label}`}
                       className="w-5 h-5 mr-2 cursor-pointer accent-[#17C513]"
                       checked={selectedOption?.text === option.text}
                       onChange={() => handleOptionSelect(option)}
