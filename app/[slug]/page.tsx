@@ -165,6 +165,7 @@ export default function LandingPage({ params }: { params: any }) {
       email: formData.email,
       phone: `${selectedCountry.ddi}${whatsappNumericOnly}`,
       country: selectedCountry.code,
+      sfunnel: "61"
     })
 
     // Adicionar todos os parâmetros UTM da URL atual
@@ -172,8 +173,8 @@ export default function LandingPage({ params }: { params: any }) {
       queryParams.append(key, value)
     }
 
-    // Redirecionar para a página de quiz com os parâmetros
-    router.push(`/quiz/${slug}?${queryParams.toString()}`)
+    // Redirecionar para a página do Sales Funnel com os parâmetros
+    window.location.href = `https://sf.gabimodesto.com.br/sf/?${queryParams.toString()}`
   }
 
   if (showSplash) {
