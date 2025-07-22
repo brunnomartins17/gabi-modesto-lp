@@ -10,7 +10,7 @@ import SplashScreen from "@/components/splash-screen"
 import { sendLeadData } from "@/services/api"
 
 // Variável global para o lançamento atual
-const CURRENT_LAUNCH = "[LCI_ABR25][LEAD]"
+const CURRENT_LAUNCH = "[LCI_AGO25][LEAD]"
 
 // ID da empresa
 const COMPANY_ID = "a5170c9f-0383-4ac9-8d58-6f76f48a8e69"
@@ -240,7 +240,7 @@ export default function LandingPage({ params }: { params: any }) {
                 </h1>
 
                 <div className="inline-block bg-[#244C6C] text-white px-6 py-2 rounded-md mb-6 text-xl md:text-2xl font-bold">
-                  07/04 a 13/04
+                  28/07 a 11/08
                 </div>
 
                 <div className={`flex items-center mb-5 ${isMobile ? "justify-center" : ""}`}>

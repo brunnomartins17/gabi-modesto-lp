@@ -105,7 +105,7 @@ export default function LandingPage({ params }: { params: any }) {
                 </h1>
 
                 <div className="inline-block bg-[#2c3e50] text-white px-6 py-2 rounded-md mb-6 text-base">
-                  07/04 a 13/04
+                  28/07 a 11/08
                 </div>
 
                 <div className="flex items-center mb-5">

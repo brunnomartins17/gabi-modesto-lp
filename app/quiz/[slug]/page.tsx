@@ -8,7 +8,7 @@ import AttentionBox from "@/components/attention-box"
 import { sendQuizData } from "@/services/api"
 
 // Variável global para o lançamento atual
-const CURRENT_LAUNCH = "[LCI_ABR25][LEAD]"
+const CURRENT_LAUNCH = "[LCI_AGO25][LEAD]"
 
 // ID da empresa
 const COMPANY_ID = "a5170c9f-0383-4ac9-8d58-6f76f48a8e69"
