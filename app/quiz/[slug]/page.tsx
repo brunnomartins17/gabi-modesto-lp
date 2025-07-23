@@ -25,19 +25,19 @@ const quizQuestions = [
     options: [
       {
         text: "Até 24 anos",
-        weight: 0,
+        weight: 4.94,
       },
       {
         text: "De 25 a 34 anos",
-        weight: 0,
+        weight: 16.31,
       },
       {
         text: "De 35 a 44 anos",
-        weight: 0,
+        weight: 24.41,
       },
       {
         text: "45 ou + anos",
-        weight: 0,
+        weight: 27.15,
       },
     ],
     showBackButton: false,
@@ -133,11 +133,11 @@ const quizQuestions = [
     options: [
       {
         text: "Feminino",
-        weight: 20.86881134,
+        weight: 20.87,
       },
       {
         text: "Masculino",
-        weight: 14.82039689,
+        weight: 14.82,
       },
     ],
     showBackButton: true,
