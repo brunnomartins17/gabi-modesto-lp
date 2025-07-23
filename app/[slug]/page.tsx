@@ -186,7 +186,7 @@ export default function LandingPage({ params }: { params: any }) {
 
   // Estilo personalizado para o título com espaçamento entre linhas mais sutil
   const titleStyle = {
-    lineHeight: isMobile ? "1.3" : "1.4", // Espaçamento mais sutil para desktop
+    lineHeight: isMobile ? "1.3" : "1.2", // Espaçamento mais sutil para desktop
   }
 
   return (
@@ -228,19 +228,20 @@ export default function LandingPage({ params }: { params: any }) {
                   </div>
                 )}
 
-                <h1 className={`text-3xl md:text-5xl font-medium mb-6 ${isMobile ? "mt-52" : ""}`} style={titleStyle}>
-                  <span className="text-[#244C6C]">Como </span>
+                <h1 className={`text-3xl md:text-5xl mb-6 ${isMobile ? "mt-52" : ""}`} style={titleStyle}>
+                  {/* <span className="text-[#244C6C]">Como </span>
                   <span className="text-black">entender e falar</span>
                   <br />
                   <span className="text-black">inglês </span>
                   <span className="text-[#244C6C]">fluentemente em</span>
                   <br />
                   <span className="text-black">12 meses, </span>
-                  <span className="text-[#244C6C]">ou menos.</span>
+                  <span className="text-[#244C6C]">ou menos.</span> */}
+                  Metade do ano já passou! Agora é a sua última chance pra aprender inglês <span className="font-medium">até o fim de 2025</span>
                 </h1>
 
                 <div className="inline-block bg-[#244C6C] text-white px-6 py-2 rounded-md mb-6 text-xl md:text-2xl font-bold">
-                  28/07 a 11/08
+                De 28/07 a 11/08, sempre às 20h05
                 </div>
 
                 <div className={`flex items-center mb-5 ${isMobile ? "justify-center" : ""}`}>

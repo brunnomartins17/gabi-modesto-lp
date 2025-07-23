@@ -15,7 +15,7 @@ export default function Logo() {
     <div className="mb-4 text-left">
       <Link href="/" className="inline-block">
         <Image
-          src="/images/logo-fluenciassim.webp"
+          src="https://gabimodesto.com.br/wp-content/uploads/2025/07/Logo.webp"
           alt="Fluência assim"
           width={width}
           height={height}

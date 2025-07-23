@@ -35,7 +35,7 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
     >
       <div className="relative animate-pulse-slow">
         <Image
-          src="/images/logo-fluenciassim.webp"
+          src="https://gabimodesto.com.br/wp-content/uploads/2025/07/Logo.webp"
           alt="Fluência assim"
           width={240}
           height={70}
