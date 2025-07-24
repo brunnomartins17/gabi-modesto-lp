@@ -14,7 +14,7 @@ const CURRENT_LAUNCH = "[LCI_AGO25][LEAD]"
 const COMPANY_ID = "a5170c9f-0383-4ac9-8d58-6f76f48a8e69"
 
 // Adicionar a constante com o link do grupo do WhatsApp no topo do arquivo, junto com as outras constantes
-const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/Imhz5YlWLjgBBgMI4ml1dP"
+const WHATSAPP_GROUP_LINK = "https://sndflw.com/i/lciago25"
 
 // Define the quiz questions with the new structure
 const quizQuestions = [
