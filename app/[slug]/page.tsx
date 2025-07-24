@@ -46,6 +46,12 @@ export default function LandingPage({ params }: { params: any }) {
   const [showSplash, setShowSplash] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+
+  const slugParts = slug.split('-');
+  const temperatura = slugParts[slugParts.length - 1];
+
+  console.log('temperatura', temperatura)
+
   // Detectar se é mobile no lado do cliente
   useEffect(() => {
     const checkIfMobile = () => {
@@ -126,6 +132,7 @@ export default function LandingPage({ params }: { params: any }) {
       phone: `${selectedCountry.ddi}${whatsappNumericOnly}`,
       countryCode: selectedCountry.code,
       countryDDI: selectedCountry.ddi,
+      temperatura: temperatura,
 
       // Informações da origem
       source: slug,
@@ -165,7 +172,8 @@ export default function LandingPage({ params }: { params: any }) {
       email: formData.email,
       phone: `${selectedCountry.ddi}${whatsappNumericOnly}`,
       country: selectedCountry.code,
-      sfunnel: "61"
+      sfunnel: "61",
+      temperatura: temperatura,
     })
 
     // Adicionar todos os parâmetros UTM da URL atual

@@ -13,9 +13,6 @@ const CURRENT_LAUNCH = "[LCI_AGO25][LEAD]"
 // ID da empresa
 const COMPANY_ID = "a5170c9f-0383-4ac9-8d58-6f76f48a8e69"
 
-// Adicionar a constante com o link do grupo do WhatsApp no topo do arquivo, junto com as outras constantes
-const WHATSAPP_GROUP_LINK = "https://sndflw.com/i/lciago25"
-
 // Define the quiz questions with the new structure
 const quizQuestions = [
   {
@@ -431,6 +428,19 @@ export default function QuizPage({ params }: { params: any }) {
     urlParams: {} as Record<string, string>,
   })
   const [isInitialized, setIsInitialized] = useState(false)
+
+  const temperatura = searchParams.get("temperatura") || "f"; // Use a default value if not found
+  console.log('temperatura', temperatura);
+
+  const whatsappRedirectLinks = {
+    f: "https://sndflw.com/i/lciago25-frio",
+    m: "https://sndflw.com/i/lciago25-quente",
+    q: "https://sndflw.com/i/lciago25-quente",
+    o: "https://sndflw.com/i/lciago25",
+    org: "https://sndflw.com/i/lciago25",
+  };
+
+  const WHATSAPP_GROUP_LINK = whatsappRedirectLinks[temperatura as keyof typeof whatsappRedirectLinks] || "https://sndflw.com/i/lciago25";
 
   // Detectar se é mobile no lado do cliente
   useEffect(() => {
