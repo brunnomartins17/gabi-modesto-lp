@@ -21,11 +21,19 @@ const quizQuestions = [
     question: "Qual é a sua faixa etária?",
     options: [
       {
-        text: "Até 24 anos",
+        text: "Até 18 anos",
         weight: 4.94,
       },
       {
-        text: "De 25 a 34 anos",
+        text: "De 19 a 24 anos",
+        weight: 4.94,
+      },
+      {
+        text: "De 25 a 30 anos",
+        weight: 16.31,
+      },
+      {
+        text: "De 31 a 34 anos",
         weight: 16.31,
       },
       {
@@ -33,7 +41,19 @@ const quizQuestions = [
         weight: 24.41,
       },
       {
-        text: "45 ou + anos",
+        text: "De 45 a 54 anos",
+        weight: 27.15,
+      },
+      {
+        text: "De 55 a 64 anos",
+        weight: 27.15,
+      },
+      {
+        text: "De 65 a 74 anos",
+        weight: 27.15,
+      },
+      {
+        text: "75 anos ou mais",
         weight: 27.15,
       },
     ],
@@ -187,6 +207,10 @@ const quizQuestions = [
       {
         text: "Acima de R$ 10.000",
         weight: 66.98895028,
+      },
+      {
+        text: "Prefiro não responder",
+        weight: 7.58,
       },
     ],
     showBackButton: true,
