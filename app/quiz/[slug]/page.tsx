@@ -894,7 +894,7 @@ export default function QuizPage({ params }: { params: any }) {
             </div>
           </div>
 
-          <AttentionBox />
+          {/* <AttentionBox /> */}
         </div>
       </div>
 
