@@ -804,7 +804,7 @@ export default function QuizPage({ params }: { params: any }) {
             <div className="text-center mt-6 mb-12">
               <h1 className="text-2xl md:text-3xl font-bold mb-6 text-[#244C6C]">Obrigado por completar o quiz!</h1>
               <p className="text-lg mb-6">
-                Sua aula com 3 exercícios exclusivos será enviada para o seu e-mail em breve.
+                Para concluir sua inscrição, receber seus materiais e as aulas do evento, preencha a ficha do participante.
               </p>
               <p className="text-base mb-4">Fique de olho na sua caixa de entrada e também no WhatsApp!</p>
               <p className="text-base font-medium">Você será redirecionado para o grupo do WhatsApp em instantes...</p>
@@ -834,7 +834,7 @@ export default function QuizPage({ params }: { params: any }) {
 
           <div className="mb-6">
             <p className="text-lg md:text-xl text-center">
-              Pra concluir sua inscrição e receber uma aula com 3 exercícios exclusivos, responda:
+              Para concluir sua inscrição, receber seus materiais e as aulas do evento, preencha a ficha do participante.
             </p>
           </div>
 
